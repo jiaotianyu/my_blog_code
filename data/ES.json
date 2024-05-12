@@ -1,0 +1,78 @@
+// PUT /article
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "my_analyzer": {
+          "tokenizer": "ik_max_word",
+          "filter": "piny"
+        }
+      },
+      "filter": {
+        "piny": {
+          "type": "pinyin",
+          "keep_full_pinyin": false,
+          "keep_joined_full_pinyin": true,
+          "keep_original": true,
+          "limit_first_letter_length": 16,
+          "remove_duplicated_term": true,
+          "none_chinese_pinyin_tokenize": false
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "title": {
+        "type": "text",
+        "analyzer": "my_analyzer",
+        "search_analyzer": "ik_smart",
+        "copy_to": "all"
+      },
+      "content": {
+        "type": "text",
+        "analyzer": "my_analyzer",
+        "search_analyzer": "ik_smart",
+        "copy_to": "all"
+      }
+    }
+  }
+}
+
+// PUT /user
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "my_analyzer": {
+          "tokenizer": "ik_max_word",
+          "filter": "piny"
+        }
+      },
+      "filter": {
+        "piny": {
+          "type": "pinyin",
+          "keep_full_pinyin": false,
+          "keep_joined_full_pinyin": true,
+          "keep_original": true,
+          "limit_first_letter_length": 16,
+          "remove_duplicated_term": true,
+          "none_chinese_pinyin_tokenize": false
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "username": {
+        "type": "text",
+        "analyzer": "my_analyzer",
+        "search_analyzer": "ik_smart",
+        "copy_to": "all"
+      },
+      "email": {
+        "type": "keyword"
+      }
+    }
+  }
+}
